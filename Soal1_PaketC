@@ -1,0 +1,100 @@
+#include<stdio.h>
+#include<stdlib.h>
+#define MAXQUEUE 3
+
+typedef struct{
+int count;
+int front;
+int rear;
+int item[MAXQUEUE];
+
+} QUEUE;
+
+QUEUE antrean;
+
+void inisialisasi(QUEUE *Q){
+Q->count=0;
+Q->front=0;
+Q->rear=0;
+}
+
+int isEmpty(QUEUE *Q){
+int hasil=0;
+if (Q->count==0){
+hasil=1;
+}
+return hasil;
+}
+
+int isFull(QUEUE *Q){
+int hasil=0;
+if (Q->count==MAXQUEUE){
+hasil=1;
+}
+
+return hasil;
+}
+
+void insert(QUEUE *Q, int data){
+if (Q->count==MAXQUEUE){
+    printf("Queue penuh\n");
+}else{
+    Q->item[Q->rear]=data;
+    Q->rear++;
+    Q->count++;
+    }
+}
+
+void hapus(QUEUE *Q){
+    if (Q->count==0){
+        printf("Queue kosong\n");
+    }else{
+        Q->front++;
+        Q->count--;
+        
+    }
+    
+}
+
+void printQueue(QUEUE *Q){
+    int i;
+    for (i=Q->front; i<Q->rear; i++){
+        printf("%d ", Q->item[i]);
+    }
+}
+
+int main(){
+inisialisasi(&antrean);
+
+printf("masukan 17\n");
+insert(&antrean,17);
+printf("isi antrean:");
+printQueue(&antrean);
+
+printf("\nmasukan 45\n");
+insert(&antrean,45);
+printf("isi antrean:");
+printQueue(&antrean);
+
+printf("\nmasukan 77\n");
+insert(&antrean,77);
+printf("isi antrean:");
+printQueue(&antrean);
+
+printf("\nmenghapus 17 dari antrean\n");
+hapus(&antrean);
+printf("isi antrean:");
+printQueue(&antrean);
+
+printf("\nmasukan 15\n");
+insert(&antrean,15);
+printf("isi antrean:");
+printQueue(&antrean);
+
+// contoh
+// printf("masukan xx\n");
+// insert(&abcde, yy);
+// printQueue(&12345);
+
+return 0;
+}
